@@ -1,0 +1,120 @@
+body {
+  background-color: #b2f7e2;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #05005c;
+  --bs-btn-border-color: #060071;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #070091;
+  --bs-btn-hover-border-color: rgb(0, 3, 157);
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.login-message {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-message h2 {
+    font-size: 36px;
+    color: #133d87;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.login-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.login-logo a {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 5px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-logo a:hover {
+  border-color: #001f3d;
+  transform: scale(1.05);
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #001f3d;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.login-button:hover {
+  background: #001a34;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 31, 61, 0.2);
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.no-underline:hover {
+  text-decoration: underline;
+}
+
+.form-control {
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #001f3d;
+  box-shadow: none;
+}
+
+.text-primary {
+    --bs-text-opacity: 1;
+    color: rgb(0 7 131) !important;
+}

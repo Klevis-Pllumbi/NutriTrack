@@ -1,0 +1,119 @@
+body {
+  background: #b2f7e2;
+  margin: 0;
+  padding: 0;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #05005c;
+    --bs-btn-border-color: #060071;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #070091;
+    --bs-btn-hover-border-color: rgb(0, 3, 157);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+}
+
+.register-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-message {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-message h2 {
+  font-size: 36px;
+  color: #133d87;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.register-message p {
+  font-size: 16px;
+  color: #608bc0;
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.register-form .form-group {
+  margin-bottom: 20px;
+}
+
+.register-form .form-check {
+  margin-bottom: 20px;
+}
+
+.register-button {
+    width: 100%;
+    background-color: #000462;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.register-button:hover {
+  background-color: #0007a6
+
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-footer a {
+    color: #050091;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.text-center {
+  text-align: center;
+}
