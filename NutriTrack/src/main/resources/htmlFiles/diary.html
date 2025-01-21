@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Food Diary</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/diary.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/dashboard">
+            <img th:src="@{/images/navbarlogo.png}" alt="Logo" width="200">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/insert">Insert</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/diary">Diary</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container diary-container mt-5">
+    <h1 class="text-center fw-bold diary-header text-primary">Your Food Diary</h1>
+
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div class="filters mb-4 mt-3">
+
+        <div class="date-range-filter mb-3">
+            <form id="dateRangeForm" class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="fromDate" class="form-label">From:</label>
+                    <input type="date" class="form-control" id="fromDate" name="fromDate">
+                </div>
+                <div class="col-auto">
+                    <label for="toDate" class="form-label">To:</label>
+                    <input type="date" class="form-control" id="toDate" name="toDate">
+                </div>
+                <div class="col-auto" style="margin-top: 32px;">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="search">
+            <input type="text" id="searchBar" class="form-control" placeholder="Search food entries...">
+        </div>
+    </div>
+
+    <div th:if="${groupedEntries}">
+        <div th:each="entryGroup : ${groupedEntries}" class="diary-entries">
+            <div class="diary-entry mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 th:text="${entryGroup.key}" class="card-title">Date</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th>Food</th>
+                                    <th>Calories (kcal)</th>
+                                    <th>Price ($)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="food : ${entryGroup.value}">
+                                    <td th:text="${food.name}"></td>
+                                    <td th:text="${food.cals}"></td>
+                                    <td th:text="${food.price}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${groupedEntries == null || groupedEntries.isEmpty()}" class="empty-state">
+        <p>No food entries available for this time period.</p>
+    </div>
+</div>
+
+<script>
+    function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Date Range Filter functionality
+document.getElementById('dateRangeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fromDate = document.getElementById('fromDate').value;
+    const toDate = document.getElementById('toDate').value;
+
+    if (!fromDate || !toDate) {
+        alert('Please select both start and end dates');
+        return;
+    }
+
+    if (fromDate > toDate) {
+        alert('Start date must be before end date');
+        return;
+    }
+
+    window.location.href = `/diary?fromDate=${fromDate}&toDate=${toDate}`;
+});
+
+// Set max date for date inputs to today
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('fromDate').max = today;
+document.getElementById('toDate').max = today;
+
+// Check for URL parameters and set date inputs accordingly
+const urlFromDate = getUrlParameter('fromDate');
+const urlToDate = getUrlParameter('toDate');
+
+if (urlFromDate && urlToDate) {
+    document.getElementById('fromDate').value = urlFromDate;
+    document.getElementById('toDate').value = urlToDate;
+} else {
+    // Set default date range to last 30 days only if no URL parameters exist
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    document.getElementById('fromDate').value = thirtyDaysAgo.toISOString().split('T')[0];
+    document.getElementById('toDate').value = today;
+}
+
+// Search functionality (unchanged)
+document.getElementById('searchBar').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const entryGroups = document.querySelectorAll('.diary-entry');
+
+    entryGroups.forEach(group => {
+        const rows = group.querySelectorAll('tbody tr');
+        let groupHasMatch = false;
+
+        rows.forEach(row => {
+            const foodName = row.querySelector('td:first-child').textContent.toLowerCase();
+            if (foodName.includes(filter)) {
+                row.style.display = '';
+                groupHasMatch = true;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        group.style.display = groupHasMatch ? '' : 'none';
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
