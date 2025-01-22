@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert</title>
+    <title>Push</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/insert.css}">
+    <link rel="stylesheet" th:href="@{/css/push.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
-    <div class="container">
+    <div class="navbar-container">
         <a class="navbar-brand" href="/dashboard">
             <img th:src="@{/images/navbarlogo.png}" alt="Logo" width="200">
         </a>
@@ -19,15 +20,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+
+            <ul class="navbar-nav">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        Dashboard
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/insert">Insert</a>
+                    <a class="nav-link" href="/push">
+                        <i class="fas fa-plus-circle"></i>
+                        Push
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/diary">Diary</a>
+                    <a class="nav-link" href="/journal">
+                        <i class="fas fa-book"></i>
+                        Journal
+                    </a>
                 </li>
 
             </ul>
@@ -36,23 +48,23 @@
 </nav>
 
 <!-- Main Content -->
-<div class="min-vh-100 bg-light p-0">
+<div class="min-vh-100 p-0">
     <div class="container py-4">
         <div class="row justify-content-center mt-4">
             <div class="col-md-6 col-lg-6">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-4 card-hover animate-fade-in">
-                        <h2 class="text-primary fw-bold mb-4">Insert new entry</h2>
+                        <h2 class="text-primary fw-bold mb-4">Push new entry</h2>
 
                         <!-- Error and Success Messages -->
                         <div th:if="${error}" class="alert alert-danger" role="alert">
                             <span th:text="${error}"></span>
                         </div>
                         <div th:if="${success}" class="alert alert-success" role="alert">
-                            Food entry inserted successfully!
+                            Food entry pushed successfully!
                         </div>
 
-                        <form th:action="@{/insert}" method="post" th:object="${foodRequest}">
+                        <form th:action="@{/push}" method="post" th:object="${foodRequest}">
                             <!-- Food Name -->
                             <div class="mb-3">
                                 <label class="form-label fw-medium" for="name">Food Name</label>
@@ -74,7 +86,7 @@
                             <!-- Submit Button -->
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">
-                                    Insert
+                                    Push
                                 </button>
                             </div>
                         </form>
