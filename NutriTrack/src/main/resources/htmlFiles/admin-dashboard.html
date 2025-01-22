@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Add any CSS frameworks here, like Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-container">
+        <a class="navbar-brand" href="/dashboard">
+            <img th:src="@{/images/navbarlogo.png}" alt="Logo" width="200">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/push">
+                        <i class="fas fa-plus-circle"></i>
+                        Push
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/journal">
+                        <i class="fas fa-book"></i>
+                        Journal
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5 py-5">
+    <h1 class="mt-5">Admin Dashboard</h1>
+
+
+
+    <!-- Display Entries from Last Week and Week Before -->
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Entries (Last Week)</h5>
+                    <p class="card-text" th:text="${data.entriesThisWeek}">Last Week Entries: 0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Entries (Week Before)</h5>
+                    <p class="card-text" th:text="${data.entriesLastWeek}">Week Before Entries: 0</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="mt-5">
+        <h3>Users with High Spending</h3>
+        <table class="table table-striped mt-3">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Total Spent</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${data.usersWithHighSpending}">
+                <td th:text="${user.id}">ID</td>
+                <td th:text="${user.name}">User Name</td>
+                <td th:text="${user.email}">User Email</td>
+                <td>$<span th:text="${user.totalSpent}">Total Spent</span></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="mt-5">
+        <h3>Users</h3>
+        <table class="table table-striped mt-3">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Entries</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">ID</td>
+                <td th:text="${user.name}">User Name</td>
+                <td th:text="${user.email}">User Email</td>
+                <td>
+                    <a th:href="@{/admin/users/{userId}/entries(userId=${user.id})}" class="btn btn-primary">View Entries</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

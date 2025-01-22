@@ -1,0 +1,300 @@
+
+:root {
+    --light-yellow: #fff395;
+    --yellow: #ffdd00;
+
+    --purple: #e400df;
+    --purple-dark: rgb(161, 26, 159);
+    --white: #ffffff;
+    --gray-light: #f8fffa;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --transition: all 0.2s ease-in-out;
+}
+
+.min-vh-100{
+    background-image: url('../images/nutritrack-background-2.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+
+
+}
+
+
+
+.navbar {
+    position: fixed;
+    z-index: 1050;
+    background: linear-gradient(157deg, rgb(255, 0, 251) 20%, rgb(228, 0, 223) 100%);
+    color: #ffdd00;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.navbar-collapse{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.navbar-brand img {
+    border-radius: 8px;
+    padding: 2px;
+    transition: transform 0.3s ease;
+    max-width: 200px;
+    height: auto;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
+
+.navbar-toggler {
+    color: white;
+    border: none;
+    padding: 0.5rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.nav-link {
+    color: white !important;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    background-color: #ffd300;
+    color: #000000 !important;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+}
+.page-title {
+    color: var(--purple);
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--yellow);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+
+
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: var(--white);
+    color: var(--purple);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.stats-card {
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--light-yellow) 100%);
+    color: var(--purple);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tables */
+.table {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.table thead th {
+    background-color: var(--yellow);
+    color: var(--purple);
+    border-bottom: none;
+    padding: 1rem;
+}
+
+.table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: #000000;
+}
+
+.btn-primary:hover {
+    background-color: var(--light-yellow);
+    border-color: var(--light-yellow);
+}
+
+.btn-warning {
+    background-color: #ffd700;
+    border-color: #ffd700;
+    color: var(--yellow);
+}
+
+.btn-danger {
+    background-color: #ff6b6b;
+    border-color: #ff6b6b;
+    color: var(--white);
+}
+
+/* Forms */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #dce1e4;
+    padding: 0.75rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 0.2rem rgba(255, 211, 0, 0.37);
+}
+
+.form-group label {
+    color: var(--purple);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Utilities */
+.mt-lg {
+    margin-top: 2rem;
+}
+
+.mb-lg {
+    margin-bottom: 2rem;
+}
+
+.shadow {
+    box-shadow: var(--shadow) !important;
+}
+
+/* Mobile Styles */
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 76px;
+    }
+
+    .navbar {
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: auto;
+        flex-direction: row;
+    }
+
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        max-width: 50%;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: 76px; /* Height of the navbar */
+        left: 0;
+        right: 0;
+        background-color: rgb(228, 0, 223);
+        padding: 1rem;
+    }
+
+    .navbar-nav {
+        flex-direction: column !important; /* Ensures items stack vertically */
+        gap: 0.5rem; /* Adds spacing between items */
+        width: 100%; /* Ensures it takes the full width of the collapse */
+    }
+
+    .nav-link {
+        border-radius: 0;
+        text-align: left; /* Aligns text to the left for better visibility */
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+}
+
+
+/* Desktop Styles */
+@media (min-width: 992px) {
+    body {
+        padding-left: 250px;
+        padding-top: 0;
+    }
+
+    .navbar {
+        width: 250px ;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        padding: 1.5rem 1rem !important;
+    }
+
+    .navbar-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .navbar-collapse {
+        height: 100%;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        width:100%;
+
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .container {
+        width: calc(100% - 250px);
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+}
