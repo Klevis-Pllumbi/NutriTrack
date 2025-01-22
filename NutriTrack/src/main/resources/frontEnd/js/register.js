@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showError(message) {
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'alert alert-danger mt-3';
+        errorDiv.className = 'alert alert-warning mt-3';
         errorDiv.textContent = message;
 
         const existingError = form.querySelector('.alert');

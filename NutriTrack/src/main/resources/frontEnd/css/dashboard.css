@@ -1,53 +1,95 @@
-body {
-    margin: 0;
-    padding-top: 56px;
+.min-vh-100{
+    background-image: url('../images/nutritrack-background-2.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+
 
 }
+body {
+    margin: 0;
+    background-color: rgb(255, 246, 176);
+}
+
 .bg-light {
-    background-color: rgb(246, 255, 253) !important;
+    --bs-bg-opacity: 1;
+    background-color: rgb(255, 249, 219) !important;
 }
 
-.min-vh-100 {
-    padding: 0;
+h1{
+    color: #e400df;
 }
-
-body {
-    margin: 0;
-    padding-top: 56px;
-}
-
+/* Navbar styles */
 .navbar {
     position: fixed;
-    top: 0;
-    width: 100%;
     z-index: 1050;
+    background: linear-gradient(157deg, rgb(255, 0, 251) 20%, rgb(228, 0, 223) 100%);
+    color: #ffdd00;
+    padding: 1rem;
+    transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(157deg, rgba(0, 12, 77, 1) 20%, rgba(0, 7, 45, 1) 100%);
 }
+
+.navbar-container {
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.navbar-collapse{
+    display: flex;
+    flex-direction: column;
+}
+
 
 .navbar-brand img {
     border-radius: 8px;
     padding: 2px;
     transition: transform 0.3s ease;
+    max-width: 200px;
+    height: auto;
 }
 
 .navbar-brand:hover img {
     transform: scale(1.05);
 }
 
+.navbar-toggler {
+    color: white;
+    border: none;
+    padding: 0.5rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 .nav-link {
-    color: #ffffff;
+    color: white !important;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     transition: background-color 0.3s ease;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
 .nav-link:hover {
-    background-color: #1f37b7;
-
-
-    color:#ffffff;
+    background-color: #ffd300;
+    color: #000000 !important;
 }
 
+.nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Stats Container */
 .stats-container {
     display: flex;
     gap: 1rem;
@@ -60,7 +102,7 @@ body {
     width: 100%;
     max-width: 300px;
     padding: 1.5rem;
-    background-color: #ffffff;
+    background-color: #ffdd00;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -68,23 +110,24 @@ body {
 
 .stat-card .icon {
     font-size: 2.5rem;
-    color: #133d87;
+    color: #e400df;
     margin-bottom: 1rem;
 }
 
 .stat-card .stat-title {
     font-weight: bold;
     font-size: 1.25rem;
-    color: #133d87;
+    color: #ff00fb;
     margin-bottom: 0.5rem;
 }
 
 .stat-card .stat-value {
     font-size: 1.75rem;
     font-weight: bold;
-    color: #007bff;
+    color: #e400df;
 }
 
+/* Table Styles */
 .table-container {
     margin-top: 2rem;
 }
@@ -95,18 +138,19 @@ body {
 }
 
 .table thead {
-    background-color: #133d87;
-    color: #ffffff;
+    background-color: #ff00fb;
+    color: #ffdd00;
     font-weight: bold;
 }
 
 .table th, .table td {
     padding: 0.75rem 1rem;
+    vertical-align: middle;
 }
 
-.table th{
-    background-color: #e5fff8;
-    border-color: #c4ffef;
+.table th {
+    background-color: #ffdd00;
+    border-color: #ffd300;
 }
 
 .table tbody tr {
@@ -115,30 +159,9 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .table td.actions {
     text-align: center;
 }
-
-.btn {
-    border-radius: 8px;
-}
-
-.nav-pills{
-    --bs-nav-pills-link-active-bg: #66dcc2;
-    --bs-nav-pills-link-active-color: #003364;
-}
-.nav-pills .nav-link{
-    background-color: #c4ffef;
-    color: #00144e;
-    border: 1px solid #c4ffef
-}
-
-
-
-
-
 
 .progress-ring {
     transform: rotate(-90deg);
@@ -147,50 +170,42 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .progress-ring circle {
     fill: none;
     stroke-width: 20;
 }
+
 .progress-ring .background {
-    stroke: #e0e0e0;
+    stroke: #fff395;
 }
+
 .progress-ring .foreground {
-    stroke: #8799ff;
+    stroke: #ffdd00;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease;
 }
+
 .circle-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .circle-container span {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000158;
-}
-.table th, .table td {
-    vertical-align: middle;
-}
-
-.circle-red {
-    stroke: red !important;
+    color: #e400df;
 }
 
 
 
-
-
-
-
+/* Text and Logo Styles */
 .text-primary {
     --bs-text-opacity: 1;
-    color: rgb(0 12 77) !important;
+    color: rgb(255, 0, 251) !important;
 }
-
-
-
 
 .logo-container {
     width: 100%;
@@ -211,34 +226,104 @@ body {
 .title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #133d87;
+    color: #ff00fb;
     margin-bottom: 1rem;
 }
 
 .mx-auto {
     margin-right: auto !important;
     margin-left: auto !important;
-    width:100%;
+    width: 100%;
 }
 
+/* Mobile Styles */
+/* Mobile Styles */
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 76px;
+    }
 
-@media (max-width: 991px) {
+    .navbar {
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: auto;
+        flex-direction: row;
+    }
+
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        max-width: 50%;
+    }
+
     .navbar-collapse {
-        background-color: linear-gradient(157deg, rgba(0,12,77,1) 20%, rgba(0,7,45,1) 100%);
+        position: absolute;
+        top: 76px; /* Height of the navbar */
+        left: 0;
+        right: 0;
+        background-color: rgb(228, 0, 223);
         padding: 1rem;
-        border-radius: 0 0 8px 8px;
+    }
+
+    .navbar-nav {
+        flex-direction: column !important; /* Ensures items stack vertically */
+        gap: 0.5rem; /* Adds spacing between items */
+        width: 100%; /* Ensures it takes the full width of the collapse */
     }
 
     .nav-link {
-        border-radius: 0px;
-
+        border-radius: 0;
+        text-align: left; /* Aligns text to the left for better visibility */
     }
+
     .navbar-toggler {
-        color: white;
-        border: none;
+        margin-left: auto;
+    }
+}
+
+
+/* Desktop Styles */
+@media (min-width: 992px) {
+    body {
+        padding-left: 250px;
+        padding-top: 0;
     }
 
-    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    .navbar {
+        width: 250px ;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        padding: 1.5rem 1rem !important;
+    }
+
+    .navbar-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .navbar-collapse {
+        height: 100%;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        width:100%;
+
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .container {
+        width: calc(100% - 250px);
+        padding-right: 2rem;
+        padding-left: 2rem;
     }
 }
