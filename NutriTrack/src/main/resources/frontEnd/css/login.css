@@ -1,33 +1,41 @@
 body {
-  background-color: #b2f7e2;
-  margin: 0;
-  padding: 0;
+  background-image: url('../images/nutritrack-background.jpg'); /* Replace with your image URL */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  margin: 0; /* Removes default margin */
+  height: 100vh; /* Ensures the body takes up the full viewport height */
+  display: flex; /* Use flexbox to align items */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #05005c;
-  --bs-btn-border-color: #060071;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #070091;
-  --bs-btn-hover-border-color: rgb(0, 3, 157);
+  --bs-btn-color: #000000;
+  --bs-btn-bg: #ffd300;
+  --bs-btn-border-color: #ffd300;
+  --bs-btn-hover-color: #000000;
+  --bs-btn-hover-bg: #c5ae00;
+  --bs-btn-hover-border-color: rgb(197, 174, 0);
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  --bs-btn-active-color: #fff;
-
+  --bs-btn-active-color: #000000;
 }
 
 .login-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  margin: 0;
+}
+
+.login-card {
+  background: transparent;
+  padding: 40px;
+  border-radius: 15px;
+
   width: 100%;
-  box-sizing: border-box;
-  margin-left:auto;
-  margin-right:auto;
+  max-width: 400px;
 }
 
 .login-message {
@@ -36,42 +44,14 @@ body {
 }
 
 .login-message h2 {
-    font-size: 36px;
-    color: #133d87;
-    margin-bottom: 10px;
-    font-weight: bold;
+  font-size: 36px;
+  color: #ffd300;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-
-.login-card {
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.login-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-}
-
-.login-logo a {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 5px;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-
-.login-logo a:hover {
-  border-color: #001f3d;
-  transform: scale(1.05);
+label{
+  color: #ffd300;
 }
 
 .login-button {
@@ -80,15 +60,15 @@ body {
   font-size: 1.1rem;
   border-radius: 4px;
   cursor: pointer;
-  background: #001f3d;
-  color: white;
+  background: #ffd300;
+  color: #000000;
   border: none;
   margin-top: 20px;
   margin-bottom: 15px;
 }
 
 .login-button:hover {
-  background: #001a34;
+  background: #c5ae00;
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 31, 61, 0.2);
 }
@@ -102,7 +82,7 @@ body {
 }
 
 .form-control {
-  border: 2px solid #e1e1e1;
+  border: 2px solid #c5ae00;
   border-radius: 8px;
   padding: 12px;
   width: 100%;
@@ -110,11 +90,17 @@ body {
 }
 
 .form-control:focus {
-  border-color: #001f3d;
+  border-color: #ffd300;
   box-shadow: none;
 }
 
 .text-primary {
-    --bs-text-opacity: 1;
-    color: rgb(0 7 131) !important;
+  --bs-text-opacity: 1;
+  color: rgb(255, 211, 0) !important;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 10px;
+  }
 }

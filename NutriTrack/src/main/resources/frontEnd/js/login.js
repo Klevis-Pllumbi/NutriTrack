@@ -1,37 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('registerForm');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
+window.onload = function () {
+    const form = document.querySelector('#registerForm');
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
+    const showPasswordCheckbox = document.querySelector('#showPassword');
 
-    const showPasswordCheckbox = document.getElementById('showPassword');
-
-    showPasswordCheckbox.addEventListener('change', function() {
-        const type = this.checked ? 'text' : 'password';
-        passwordInput.type = type;
-
-    });
+    // Toggle password visibility
+    showPasswordCheckbox.onchange = function () {
+        passwordInput.setAttribute('type', this.checked ? 'text' : 'password');
+    };
 
     // Form submit event
-    form.addEventListener('submit', function(e) {
+    form.onsubmit = function (e) {
+        const emailValue = emailInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
 
-        if (emailInput.value.trim() === '' || passwordInput.value.trim() === '') {
-            e.preventDefault();
-            showError('Please fill in all fields!');
+        // Remove existing error messages
+        const existingError = document.querySelector('.alert');
+        if (existingError) {
+            existingError.remove();
         }
-    });
 
-    function showError(message) {
+        if (!emailValue || !passwordValue) {
+            e.preventDefault();
+            displayError('Please fill in all fields!');
+        }
+    };
+
+    function displayError(message) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'alert alert-danger mt-3';
         errorDiv.textContent = message;
 
-
         form.appendChild(errorDiv);
-
-
-        const existingError = form.querySelector('.alert');
-        if (existingError) {
-            existingError.remove();
-        }
     }
-});
+};
