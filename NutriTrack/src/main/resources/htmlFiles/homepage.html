@@ -10,35 +10,17 @@
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
-<div class="home-container">
-    <div class="left-half">
-        <div class="logo-container">
-            <img th:src="@{/images/logo.png}" alt="Logo" class="logo">
+<div class="centered-container">
+    <div class="content-wrapper">
+
+        <img th:src="@{/images/nutritrack-logo.png}" alt="NutriTrack Logo" class="logo">
+
+        <div class="buttons-container">
+            <a th:href="@{/login}" class="login-btn">Login</a>
+            <a th:href="@{/register}" class="register-btn">Register</a>
         </div>
     </div>
-
-    <div class="right-half">
-        <div class="content-wrapper">
-            <div class="text-content">
-                <h1 class="title">SlimCal</h1>
-                <p class="description">
-                    Your best friend to your wellbeing! Let's be healthy together!
-                </p>
-                <div class="buttons-container">
-                    <a th:href="@{/login}" class="login-btn">Login</a>
-                    <a th:href="@{/register}" class="register-btn">Register</a>
-                </div>
-
-
-            </div>
-        </div>
-        <footer class="home-footer">
-        <p>&copy; SlimCal 2025. All Rights Reserved.</p>
-    </footer>
-    </div>
-
 
 </div>
-
 </body>
 </html>

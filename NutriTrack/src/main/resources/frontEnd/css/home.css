@@ -1,51 +1,33 @@
-
-.home-container {
-    display: flex;
-    min-height: 100vh;
-}
-
-a {
-    text-decoration: none;
-}
-
-.left-half {
-    flex: 1;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo-container {
-    text-align: center;
+/* Background styling */
+body {
+    background-image: url('../images/nutritrack-background.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    margin: 0; /* Removes default margin */
+    height: 100vh; /* Ensures the body takes up the full viewport height */
+    display: flex; /* Use flexbox to align items */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .logo {
-    width: 100%;
-    height: 100%;
+    max-width: 100%; /* Ensures the image doesn't exceed its container width */
+    height: auto; /* Maintains the aspect ratio */
+    margin-bottom: 1rem; /* Adds spacing below the logo */
 }
 
-.right-half {
-    flex: 1;
-    background: linear-gradient(157deg, rgba(208,255,236,1) 20%, rgba(150,255,212,1) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-.content-wrapper {
+/* Main container for centered content */
+.centered-container {
     text-align: center;
     width: 100%;
     max-width: 500px;
+    padding: 1rem;
 }
 
-.text-content {
-    margin-bottom: 2rem;
-}
-
+/* Title and description */
 .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #001f3d;
     margin-bottom: 1rem;
@@ -57,14 +39,15 @@ a {
     margin-bottom: 2rem;
 }
 
+/* Button styles */
 .buttons-container {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-bottom: 2rem;
 }
 
-.login-btn, .register-btn {
+.login-btn,
+.register-btn {
     padding: 0.75rem 2rem;
     font-size: 1.1rem;
     border-radius: 4px;
@@ -72,71 +55,43 @@ a {
     transition: all 0.3s ease;
 }
 
-a.login-btn {
-    color: white;
-}
-
 .login-btn {
-    background: #001f3d;
-    color: white;
+    background: #ffdd00;
+    color: #000000;
     border: none;
+    text-decoration: none;
 }
 
 .login-btn:hover {
-    color: #ffffff;
-    background: #0f2d64;
+    background: #c5ae00;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 31, 61, 0.2);
 }
 
 .register-btn {
-    background: transparent;
-    color: #001f3d;
-    border: 1px solid #001f3d;
+    background: #ffdd00;
+    color: #000000;
+    border: none;
+    text-decoration: none;
 }
 
 .register-btn:hover {
-    background: rgba(0, 31, 61, 0.1);
+    background: #c5ae00;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 31, 61, 0.1);
 }
 
-.home-footer {
-    padding: 1rem;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 50%;
-    background: transparent;
-}
 
 
-@media (max-width: 768px){
-    .left-half {
-        display: none !important;
-    }
-
-    .right-half {
-        width: 100%;
-    }
-
-    .home-footer {
-        width: 100%;
-    }
-
-    .content-wrapper {
-        padding: 1rem;
-    }
-}
-
-
+/* Responsive adjustments */
 @media (max-width: 400px) {
     .buttons-container {
         flex-direction: column;
         gap: 0.75rem;
     }
 
-    .login-btn, .register-btn {
+    .login-btn,
+    .register-btn {
         width: 100%;
     }
 }
