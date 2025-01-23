@@ -2,19 +2,19 @@ package com.upt.NutriTrack.user;
 
 import com.upt.NutriTrack.user.UserRepository;
 import com.upt.NutriTrack.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void registerUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -27,13 +27,11 @@ public class UserService {
     }
 
     public User getUserById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-    }
-}
-
-class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException(String message) {
-        super(message);
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new RuntimeException("User not found with id: " + userId);
+        }
     }
 }
