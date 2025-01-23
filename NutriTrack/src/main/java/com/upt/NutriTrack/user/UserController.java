@@ -39,11 +39,34 @@ public class UserController {
     @PostMapping("/register")
     public String handleUserRegistration(@ModelAttribute User user, Model model) {
         try {
-            userService.registerUser(user);
+            userService.addNewUser(user);
             return "redirect:/user/login?registered=true";
         } catch (IllegalArgumentException ex) {
             model.addAttribute("error", ex.getMessage());
             return "register";
+        }
+    }
+
+    @GetMapping("/profile")
+    public String displayUserProfile(@RequestParam Long userId, Model model) {
+        try {
+            User user = userService.fetchUserById(userId);
+            model.addAttribute("user", user);
+            return "profile";
+        } catch (UserNotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
+            return "error";
+        }
+    }
+
+    @PostMapping("/update")
+    public String updateUserProfile(@ModelAttribute User user, Model model) {
+        try {
+            userService.addNewUser(user); // Reuse the addNewUser method for updating
+            return "redirect:/user/profile?updated=true";
+        } catch (Exception ex) {
+            model.addAttribute("error", "Failed to update user profile");
+            return "profile";
         }
     }
 }

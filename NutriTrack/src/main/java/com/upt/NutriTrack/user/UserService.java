@@ -14,22 +14,22 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(User user) {
-        user.setPassword(encodePassword(user.getPassword()));
-        userRepository.save(user);
+    public void addNewUser(User user) {
+        user.setPassword(this.hashPassword(user.getPassword()));
+        this.userRepository.save(user);
     }
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User retrieveByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 
-    public User getUserById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+    public User fetchUserById(Long userId) {
+        return this.userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(String.format("User not found with id: %d", userId)));
     }
 
-    private String encodePassword(String password) {
-        return passwordEncoder.encode(password);
+    private String hashPassword(String password) {
+        return this.passwordEncoder.encode(password);
     }
 }
 
