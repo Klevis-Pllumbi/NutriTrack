@@ -1,24 +1,21 @@
 package com.upt.NutriTrack.user;
 
-import com.upt.NutriTrack.user.UserRepository;
-import com.upt.NutriTrack.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public void registerUser(User user) {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+        user.setPassword(encodePassword(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -27,11 +24,17 @@ public class UserService {
     }
 
     public User getUserById(Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
-            return user.get();
-        } else {
-            throw new RuntimeException("User not found with id: " + userId);
-        }
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+    }
+
+    private String encodePassword(String password) {
+        return passwordEncoder.encode(password);
+    }
+}
+
+class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException(String message) {
+        super(message);
     }
 }
