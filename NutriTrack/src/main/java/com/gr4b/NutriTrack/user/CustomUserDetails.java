@@ -1,14 +1,18 @@
 package com.gr4b.NutriTrack.user;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
+    @Getter
     private Long id;
     private String email;
     private String password;
+    // Getter for Role
+    @Getter
     private User.Role role; // Use the Role enum for type safety
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -18,14 +22,6 @@ public class CustomUserDetails implements UserDetails {
         this.password = password;
         this.role = role;
         this.authorities = authorities;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User.Role getRole() { // Getter for Role
-        return role;
     }
 
     @Override

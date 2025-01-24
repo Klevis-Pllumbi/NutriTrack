@@ -26,7 +26,7 @@ public class AdminController {
         AdminData dashboardData = adminService.fetchAdminDashboardData();
         List<User> users = adminService.fetchAllUsers();
 
-        model.addAttribute("dashboardData", dashboardData);
+        model.addAttribute("data", dashboardData);
         model.addAttribute("users", users);
         return "admin-dashboard";
     }
@@ -44,22 +44,22 @@ public class AdminController {
         model.addAttribute("userEntries", userEntries);
 
         double avgCaloriesLastWeek = adminService.fetchAverageCaloriesForUserLastWeek(userId);
-        model.addAttribute("avgCaloriesLastWeek", avgCaloriesLastWeek);
+        model.addAttribute("averageCaloriesPerUser", avgCaloriesLastWeek);
 
         return "user-entries";
     }
 
-    @GetMapping("/entries/{entryId}/edit")
+    @GetMapping("/entries/{entryId}/update")
     public String displayEditEntryForm(@PathVariable Long entryId, Model model) {
         Food entry = adminService.fetchFoodEntry(entryId);
         if (entry == null) {
             return "redirect:/admin";
         }
         model.addAttribute("entry", entry);
-        return "edit-entry";
+        return "update-entry";
     }
 
-    @PostMapping("/entries/{entryId}/edit")
+    @PostMapping("/entries/{entryId}/update")
     public String editFoodEntry(@PathVariable Long entryId, @ModelAttribute Food updatedEntry) {
         Food existingEntry = adminService.fetchFoodEntry(entryId);
         if (existingEntry != null) {
@@ -90,7 +90,7 @@ public class AdminController {
         newEntry.setUser(user);
         model.addAttribute("entry", newEntry);
         model.addAttribute("userId", userId);
-        return "add-entry";
+        return "admin-add-entry";
     }
 
     @PostMapping("/users/{userId}/add-entry")

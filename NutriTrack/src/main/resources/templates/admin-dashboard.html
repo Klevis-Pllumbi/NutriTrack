@@ -86,11 +86,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${data.usersWithHighSpending}">
-                <td th:text="${user.id}">ID</td>
-                <td th:text="${user.name}">User Name</td>
-                <td th:text="${user.email}">User Email</td>
-                <td>$<span th:text="${user.totalSpent}">Total Spent</span></td>
+            <tr th:each="user : ${data.highSpendingUser}">
+                <td th:text="${user.userId}">ID</td>
+                <td th:text="${user.fullName}">User Name</td>
+                <td th:text="${user.contactEmail}">User Email</td>
+                <td>$<span th:text="${user.amountSpent}">Total Spent</span></td>
 
             </tr>
             </tbody>

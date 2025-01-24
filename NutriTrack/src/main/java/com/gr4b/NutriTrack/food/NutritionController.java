@@ -65,14 +65,14 @@ public class NutritionController {
     }
 
 
-    @GetMapping("/insert")
+    @GetMapping("/push")
     public String showInsertPage(Model model) {
         model.addAttribute("foodRequest", new NutritionRequest());
-        return "insert";
+        return "push";
     }
 
 
-    @PostMapping("/insert")
+    @PostMapping("/push")
     public String addNutritionEntry(
             @Valid @ModelAttribute NutritionRequest request,
             @AuthenticationPrincipal UserDetails userDetails) {
@@ -89,7 +89,7 @@ public class NutritionController {
         return "redirect:/dashboard";
     }
 
-    @GetMapping("/diary/daily")
+    @GetMapping("/journal/daily")
     public String getDailyEntries(
             @RequestParam LocalDate date,
             @AuthenticationPrincipal UserDetails userDetails,
@@ -104,11 +104,10 @@ public class NutritionController {
                         entry.getCreatedAt()))
                 .collect(Collectors.toList());
         model.addAttribute("entries", foodEntryResponses);
-        return "dailyDiary";
+        return "dailyJournal";
     }
 
-
-    @GetMapping("/diary/cals/daily")
+    @GetMapping("/journal/cals/daily")
     public String getDailyCals(
             @RequestParam LocalDate date,
             @AuthenticationPrincipal UserDetails userDetails,
@@ -120,7 +119,7 @@ public class NutritionController {
     }
 
 
-    @GetMapping("/diary/spending/monthly")
+    @GetMapping("/journal/spending/monthly")
     public String getMonthlySpending(
             @RequestParam int year,
             @RequestParam int month,
@@ -132,8 +131,8 @@ public class NutritionController {
         return "monthlySpending";
     }
 
-    @GetMapping("/diary")
-    public String getDiary(
+    @GetMapping("/journal")
+    public String getJournal(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
             @AuthenticationPrincipal UserDetails userDetails,
@@ -160,6 +159,6 @@ public class NutritionController {
         model.addAttribute("groupedEntries", groupedEntries);
         model.addAttribute("error", error);
 
-        return "diary";
+        return "journal";
     }
 }

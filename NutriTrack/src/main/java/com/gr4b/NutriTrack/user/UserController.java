@@ -46,7 +46,7 @@ public class UserController {
             return "register";
         }
     }
-
+/*
     @GetMapping("/profile")
     public String displayUserProfile(@RequestParam Long userId, Model model) {
         try {
@@ -62,11 +62,11 @@ public class UserController {
     @PostMapping("/update")
     public String updateUserProfile(@ModelAttribute User user, Model model) {
         try {
-            userService.addNewUser(user); // Reuse the addNewUser method for updating
-            return "redirect:/user/profile?updated=true";
+            userService.addNewUser(user);
+            return "redirect:/login?registered=true";
         } catch (Exception ex) {
             model.addAttribute("error", "Failed to update user profile");
-            return "profile";
+            return "register";
         }
-    }
+    } */
 }
