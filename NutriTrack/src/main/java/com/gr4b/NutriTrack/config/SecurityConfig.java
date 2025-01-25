@@ -14,11 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class AppConfig {
+public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
 
-    public AppConfig(CustomUserDetailsService customUserDetailsService) {
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
     }
 
@@ -40,10 +40,10 @@ public class AppConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/register").permitAll()
-                        .requestMatchers("/css/*", "/js/", "/images/*").permitAll()
-                        .requestMatchers("/push").authenticated()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/", "/login", "/register", "/error").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/insert").authenticated()  // Restrict /insert to authenticated users
+                        .requestMatchers("/admin/**").hasRole("ADMIN")  // Restrict /admin to users with the "ADMIN" role
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

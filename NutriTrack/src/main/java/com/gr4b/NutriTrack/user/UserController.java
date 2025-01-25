@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -18,15 +17,20 @@ public class UserController {
 
     @GetMapping("/")
     public String showHomepage() {
+        System.out.println("Homepage method called");
         return "homepage";
     }
 
     @GetMapping("/login")
-    public String displayLoginPage(@RequestParam(value = "error", required = false) String error,
-                                   @RequestParam(value = "logout", required = false) String logout,
+    public String displayLoginPage(@RequestParam(required = false) String error,
+                                   @RequestParam(required = false) String logout,
                                    Model model) {
-        model.addAttribute("error", error != null ? "Invalid email or password" : "");
-        model.addAttribute("message", logout != null ? "You have been logged out successfully" : "");
+        if (error != null) {
+            model.addAttribute("error", "Invalid email or password");
+        }
+        if (logout != null) {
+            model.addAttribute("message", "You have been logged out successfully");
+        }
         return "login";
     }
 
@@ -40,33 +44,11 @@ public class UserController {
     public String handleUserRegistration(@ModelAttribute User user, Model model) {
         try {
             userService.addNewUser(user);
-            return "redirect:/user/login?registered=true";
+            return "redirect:/login?registered=true";
         } catch (IllegalArgumentException ex) {
             model.addAttribute("error", ex.getMessage());
             return "register";
         }
     }
-/*
-    @GetMapping("/profile")
-    public String displayUserProfile(@RequestParam Long userId, Model model) {
-        try {
-            User user = userService.fetchUserById(userId);
-            model.addAttribute("user", user);
-            return "profile";
-        } catch (UserNotFoundException ex) {
-            model.addAttribute("error", ex.getMessage());
-            return "error";
-        }
-    }
 
-    @PostMapping("/update")
-    public String updateUserProfile(@ModelAttribute User user, Model model) {
-        try {
-            userService.addNewUser(user);
-            return "redirect:/login?registered=true";
-        } catch (Exception ex) {
-            model.addAttribute("error", "Failed to update user profile");
-            return "register";
-        }
-    } */
 }

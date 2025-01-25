@@ -66,7 +66,7 @@ public class NutritionController {
 
 
     @GetMapping("/push")
-    public String showInsertPage(Model model) {
+    public String showPushPage(Model model) {
         model.addAttribute("foodRequest", new NutritionRequest());
         return "push";
     }
