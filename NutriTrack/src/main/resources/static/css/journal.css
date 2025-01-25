@@ -1,10 +1,13 @@
+* {
+    font-family: "Poiret One", sans-serif;
+    font-weight: bold;
+}
+
 .min-vh-100{
     background-image: url('../images/nutritrack-background-2.jpg'); /* Replace with your image URL */
     background-size: cover; /* Ensures the image covers the entire area */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
-
-
 }
 
 

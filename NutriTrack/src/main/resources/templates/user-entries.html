@@ -52,12 +52,12 @@
 
 
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Food Entries for User: <span th:text="${user.name}"></span> (ID: <span th:text="${user.id}"></span>)</h1>
+        <h1>Food Entries for <span th:text="${user.name}"></span> (ID: <span th:text="${user.id}"></span>)</h1>
         <a th:href="@{/admin/users/{userId}/add-entry(userId=${user.id})}" class="btn btn-primary">Add New Entry</a>
     </div>
     <!-- Display User's Average Calories for the Last Week -->
     <div class="mt-4">
-        <h3>User's Average Calories (Last Week): <span th:text="${averageCaloriesPerUser}">0</span> kcal</h3>
+        <h3><span th:text="${user.name}"></span> has consumed <span th:text="${averageCaloriesPerUser}">0</span> kcal last week: </h3>
     </div>
 
     <!-- Display Food Entries for the Selected User -->
@@ -65,9 +65,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Entry Date</th>
+                <th>Created At</th>
                 <th>Calories</th>
-                <th>Food Details</th>
+                <th>Food Name</th>
                 <th>Price ($)</th>
                 <th>Actions</th>
             </tr>

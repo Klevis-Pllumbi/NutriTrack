@@ -1,8 +1,11 @@
+* {
+    font-family: "Poiret One", sans-serif;
+    font-weight: bold;
+}
 
 :root {
     --light-yellow: #fff395;
     --yellow: #ffdd00;
-
     --purple: #e400df;
     --purple-dark: rgb(161, 26, 159);
     --white: #ffffff;
@@ -11,16 +14,19 @@
     --transition: all 0.2s ease-in-out;
 }
 
-.min-vh-100{
+.container {
     background-image: url('../images/nutritrack-background-2.jpg'); /* Replace with your image URL */
     background-size: cover; /* Ensures the image covers the entire area */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
-
-
 }
 
-
+.food-entry-for-user {
+    background-image: url('../images/nutritrack-background-2.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
 
 .navbar {
     position: fixed;
@@ -98,9 +104,6 @@
     padding-bottom: 10px;
     display: inline-block;
 }
-
-
-
 
 .card {
     border: none;
